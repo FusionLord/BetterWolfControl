@@ -1,5 +1,5 @@
 {
-  "parent": "builtin/generated",
+  "parent": "item/generated",
   "textures": {
     "layer0": "betterwolfcontrol:items/whistle"
   },
@@ -8,19 +8,25 @@
       "predicate": {
         "betterwolfcontrol:command": 0
       },
-      "layer1": "betterwolfcontrol:items/whistle_sit"
+      "model": "betterwolfcontrol:item/whistle_sit"
     },
     {
       "predicate": {
-        "betterwolfcontrol:command": 1
+        "betterwolfcontrol:command": 0.01
       },
-      "layer1": "betterwolfcontrol:items/whistle_come"
+      "model": "betterwolfcontrol:item/whistle_come"
     },
     {
       "predicate": {
-        "betterwolfcontrol:command": 2
+        "betterwolfcontrol:command": 0.02
       },
-      "layer1": "betterwolfcontrol:items/whistle_speak"
+      "model": "betterwolfcontrol:item/whistle_speak"
+    },
+    {
+      "predicate": {
+        "betterwolfcontrol:command": 0.03
+      },
+      "model": "betterwolfcontrol:item/whistle_group"
     }
   ]
 }

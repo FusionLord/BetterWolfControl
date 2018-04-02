@@ -1,7 +1,7 @@
 # Key Localizations
 
 # Item Localizations
-item.betterwolfcontrol:whistle.display=Wolf Whistle (%s)
+item.betterwolfcontrol:whistle.display=Wolf Whistle (%s) (%s)
 
 # Block Localizations
 
@@ -18,3 +18,21 @@ itemGroup.creativetab.betterwolfcontrol=Better Wolf Control
 item.betterwolfcontrol:whistle.command.sit=Sit
 item.betterwolfcontrol:whistle.command.come=Come
 item.betterwolfcontrol:whistle.command.speak=Speak
+item.betterwolfcontrol:whistle.command.group=Group
+item.betterwolfcontrol:whistle.command.group.all=All
+item.betterwolfcontrol:whistle.command.group.white=White
+item.betterwolfcontrol:whistle.command.group.orange=Orange
+item.betterwolfcontrol:whistle.command.group.magenta=Magenta
+item.betterwolfcontrol:whistle.command.group.light_blue=Light Blue
+item.betterwolfcontrol:whistle.command.group.yellow=Yellow
+item.betterwolfcontrol:whistle.command.group.lime=Lime
+item.betterwolfcontrol:whistle.command.group.pink=Pink
+item.betterwolfcontrol:whistle.command.group.gray=Gray
+item.betterwolfcontrol:whistle.command.group.silver=Silver
+item.betterwolfcontrol:whistle.command.group.cyan=Cyan
+item.betterwolfcontrol:whistle.command.group.purple=Purple
+item.betterwolfcontrol:whistle.command.group.blue=Blue
+item.betterwolfcontrol:whistle.command.group.brown=Brown
+item.betterwolfcontrol:whistle.command.group.green=Green
+item.betterwolfcontrol:whistle.command.group.red=Red
+item.betterwolfcontrol:whistle.command.group.black=Black

@@ -16,7 +16,7 @@ public class Items {
     @SubscribeEvent
     public static void registerItemRenders(final ModelRegistryEvent event) {
         for (final Item item : net.fusionlord.mods.betterwolfcontrol.common.init.Items.ITEMS) {
-            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName().toString()));
+            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName().toString(), "inventory"));
         }
     }
 }

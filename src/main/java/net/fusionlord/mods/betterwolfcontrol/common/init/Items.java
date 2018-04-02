@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.event.RegistryEvent;
@@ -28,7 +29,6 @@ import java.util.stream.Collectors;
  */
 public enum Items {
     WOLF_WHISTLE("whistle", new ItemWolfWhistle(), CreativeTabs.MAIN.tab);
-    public static final Items[] VALUES = values();
 
     public Item item;
 
@@ -53,6 +53,13 @@ public enum Items {
             for (final Item item : items) {
                 registry.register(item);
                 ITEMS.add(item);
+            }
+        }
+
+        @SubscribeEvent
+        public static void registerItemRenders(final ModelRegistryEvent event) {
+            for (final Item item : ITEMS) {
+                ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName().toString()));
             }
         }
     }

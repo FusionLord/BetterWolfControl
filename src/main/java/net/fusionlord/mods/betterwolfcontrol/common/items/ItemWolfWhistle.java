@@ -4,6 +4,7 @@ import net.fusionlord.mods.betterwolfcontrol.common.config.Reference;
 import net.fusionlord.mods.betterwolfcontrol.common.init.CreativeTabs;
 import net.fusionlord.mods.betterwolfcontrol.common.items.interfaces.IMouseWheelListener;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
@@ -16,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -111,7 +113,6 @@ public class ItemWolfWhistle extends Item implements IMouseWheelListener
         });
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         if (!stack.hasTagCompound()) createDefaultTag(stack);
@@ -120,6 +121,16 @@ public class ItemWolfWhistle extends Item implements IMouseWheelListener
         return I18n.format(getUnlocalizedName() + ".display",
                 I18n.format(getUnlocalizedName() + ".command." + command.name().toLowerCase()),
                 (group.TEXT + I18n.format(getUnlocalizedName() + ".command.group." + group.name().toLowerCase()) + TextFormatting.WHITE));
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+        if (!stack.hasTagCompound()) createDefaultTag(stack);
+        WhistleCommand command = WhistleCommand.VALUES[stack.getTagCompound().getInteger("command")];
+        WhistleGroup group = WhistleGroup.VALUES[stack.getTagCompound().getInteger("group")];
+        tooltip.add(I18n.format(getUnlocalizedName() + ".lore1", I18n.format(getUnlocalizedName() + ".command." + command.name().toLowerCase())));
+        tooltip.add(I18n.format(getUnlocalizedName() + ".lore2", (group.TEXT + I18n.format(getUnlocalizedName() + ".command.group." + group.name().toLowerCase()) + TextFormatting.WHITE)));
     }
 
     @Override
@@ -177,4 +188,6 @@ public class ItemWolfWhistle extends Item implements IMouseWheelListener
         tag.setInteger("group", 0);
         stack.setTagCompound(tag);
     }
+
+
 }

@@ -1,0 +1,20 @@
+# Key Localizations
+
+# Item Localizations
+item.betterwolfcontrol:whistle.display=Wolf Whistle (%s)
+
+# Block Localizations
+
+# Entity Localizations
+
+# Potion Localizations
+
+# Creative Tab Localizations
+itemGroup.creativetab.betterwolfcontrol=Better Wolf Control
+
+# Config GUI Localizations
+
+# Command Localizations
+item.betterwolfcontrol:whistle.command.sit=Sit
+item.betterwolfcontrol:whistle.command.come=Come
+item.betterwolfcontrol:whistle.command.speak=Speak

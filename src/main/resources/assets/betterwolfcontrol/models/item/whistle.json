@@ -1,0 +1,26 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "betterwolfcontrol:items/whistle"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "betterwolfcontrol:command": 0
+      },
+      "layer1": "betterwolfcontrol:items/whistle_sit"
+    },
+    {
+      "predicate": {
+        "betterwolfcontrol:command": 1
+      },
+      "layer1": "betterwolfcontrol:items/whistle_come"
+    },
+    {
+      "predicate": {
+        "betterwolfcontrol:command": 2
+      },
+      "layer1": "betterwolfcontrol:items/whistle_speak"
+    }
+  ]
+}

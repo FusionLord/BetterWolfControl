@@ -1,5 +1,7 @@
 package net.fusionlord.mods.betterwolfcontrol.common.items;
 
+import net.fusionlord.mods.betterwolfcontrol.common.config.Reference;
+import net.fusionlord.mods.betterwolfcontrol.common.init.CreativeTabs;
 import net.fusionlord.mods.betterwolfcontrol.common.items.interfaces.IMouseWheelListener;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
@@ -57,6 +59,10 @@ public class ItemWolfWhistle extends Item implements IMouseWheelListener
 
     public ItemWolfWhistle() {
         super();
+        setRegistryName(Reference.getResource("whistle"));
+        setUnlocalizedName(getRegistryName().toString());
+        setCreativeTab(CreativeTabs.MAIN.tab);
+
         maxStackSize = 1;
 
         addPropertyOverride(new ResourceLocation("command"), (stack, world, entity) -> {

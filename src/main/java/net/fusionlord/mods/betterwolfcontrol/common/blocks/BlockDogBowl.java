@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -22,13 +24,18 @@ import javax.annotation.Nullable;
  * Created by FusionLord on 4/15/2018.
  */
 public class BlockDogBowl extends Block {
-    public static final PropertyEnum<Group> COLOR = PropertyEnum.create("group", Group.class);
+    public static final PropertyEnum<Group> GROUP = PropertyEnum.create("group", Group.class);
 
     public BlockDogBowl() {
         super(Material.IRON, MapColor.IRON);
         this.setRegistryName(Reference.getResource("dogbowl"));
         this.setUnlocalizedName(this.getRegistryName().toString());
-        this.setDefaultState(blockState.getBaseState().withProperty(COLOR, Group.ALL));
+        this.setDefaultState(blockState.getBaseState().withProperty(GROUP, Group.ALL));
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, GROUP);
     }
 
     @Override
@@ -49,7 +56,14 @@ public class BlockDogBowl extends Block {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(COLOR, Group.VALUES[meta]);
+        if (meta < 0) meta = 0;
+        if (meta >= Group.VALUES.length) meta = Group.VALUES.length-1;
+        return getDefaultState().withProperty(GROUP, Group.VALUES[meta]);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return state.getValue(GROUP).ordinal();
     }
 
     @Override

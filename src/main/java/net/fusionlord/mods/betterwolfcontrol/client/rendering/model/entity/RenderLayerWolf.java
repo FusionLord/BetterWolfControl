@@ -13,7 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 /**
  * Created by FusionLord on 4/6/2018.
  */
-public class BetterWolfLayerRenderer implements LayerRenderer<EntityWolf> {
+public class RenderLayerWolf implements LayerRenderer<EntityWolf> {
 
     @Override
     public void doRenderLayer(EntityWolf entityWolf, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {

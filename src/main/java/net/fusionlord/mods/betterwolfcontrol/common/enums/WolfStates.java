@@ -1,5 +1,7 @@
 package net.fusionlord.mods.betterwolfcontrol.common.enums;
 
+import net.fusionlord.mods.betterwolfcontrol.common.config.Reference;
+
 /**
  * Created by FusionLord on 4/6/2018.
  */
@@ -11,7 +13,7 @@ public enum WolfStates {
     public static final WolfStates[] VALUES = values();
 
     public String getUnlocalizedString() {
-        return "string.wolfstate." + name().toLowerCase();
+        return Reference.getResource("wolfstate." + name().toLowerCase()).toString();
     }
 
     public static WolfStates next(WolfStates wolfStates) {

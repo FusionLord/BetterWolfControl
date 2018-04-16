@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import net.fusionlord.mods.betterwolfcontrol.common.blocks.BlockDogBowl;
 import net.fusionlord.mods.betterwolfcontrol.common.config.Reference;
 import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

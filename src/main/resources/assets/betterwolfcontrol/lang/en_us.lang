@@ -15,31 +15,36 @@ itemGroup.betterwolfcontrol:creativetab.main=Better Wolf Control
 # Config GUI Localizations
 
 # Command Localizations
+item.betterwolfcontrol:dogbowl=%s Dogbowl
 item.betterwolfcontrol:whistle.lore1=Command: %s
 item.betterwolfcontrol:whistle.lore2=Group: %s
-item.betterwolfcontrol:whistle.command.sit=Sit
-item.betterwolfcontrol:whistle.command.come=Come
-item.betterwolfcontrol:whistle.command.speak=Speak
-item.betterwolfcontrol:whistle.command.group=Group
-item.betterwolfcontrol:whistle.command.group.all=All
-item.betterwolfcontrol:whistle.command.group.white=White
-item.betterwolfcontrol:whistle.command.group.orange=Orange
-item.betterwolfcontrol:whistle.command.group.magenta=Magenta
-item.betterwolfcontrol:whistle.command.group.light_blue=Light Blue
-item.betterwolfcontrol:whistle.command.group.yellow=Yellow
-item.betterwolfcontrol:whistle.command.group.lime=Lime
-item.betterwolfcontrol:whistle.command.group.pink=Pink
-item.betterwolfcontrol:whistle.command.group.gray=Gray
-item.betterwolfcontrol:whistle.command.group.silver=Silver
-item.betterwolfcontrol:whistle.command.group.cyan=Cyan
-item.betterwolfcontrol:whistle.command.group.purple=Purple
-item.betterwolfcontrol:whistle.command.group.blue=Blue
-item.betterwolfcontrol:whistle.command.group.brown=Brown
-item.betterwolfcontrol:whistle.command.group.green=Green
-item.betterwolfcontrol:whistle.command.group.red=Red
-item.betterwolfcontrol:whistle.command.group.black=Black
+
+# Wolf Group
+betterwolfcontrol:group.all=All
+betterwolfcontrol:group.white=White
+betterwolfcontrol:group.orange=Orange
+betterwolfcontrol:group.magenta=Magenta
+betterwolfcontrol:group.light_blue=Light Blue
+betterwolfcontrol:group.yellow=Yellow
+betterwolfcontrol:group.lime=Lime
+betterwolfcontrol:group.pink=Pink
+betterwolfcontrol:group.gray=Gray
+betterwolfcontrol:group.silver=Silver
+betterwolfcontrol:group.cyan=Cyan
+betterwolfcontrol:group.purple=Purple
+betterwolfcontrol:group.blue=Blue
+betterwolfcontrol:group.brown=Brown
+betterwolfcontrol:group.green=Green
+betterwolfcontrol:group.red=Red
+betterwolfcontrol:group.black=Black
 
 # Wolf States
-string.wolfstate.aggressive=Aggressive
-string.wolfstate.passive=Passive
-string.wolfstate.defensive=Defensive
+betterwolfcontrol:wolfstate.aggressive=Aggressive
+betterwolfcontrol:wolfstate.passive=Passive
+betterwolfcontrol:wolfstate.defensive=Defensive
+
+# Commands
+betterwolfcontrol:command.sit=Sit
+betterwolfcontrol:command.come=Come
+betterwolfcontrol:command.speak=Speak
+betterwolfcontrol:command.group=Group

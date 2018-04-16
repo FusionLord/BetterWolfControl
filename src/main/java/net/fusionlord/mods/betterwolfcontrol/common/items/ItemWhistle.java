@@ -65,8 +65,8 @@ public class ItemWhistle extends Item implements IMouseWheelListener {
         verifyCompound(stack);
         Command command = getCommand(stack);
         Group group = getGroup(stack);
-        tooltip.add(I18n.format(getUnlocalizedName() + ".lore1", I18n.format(getUnlocalizedName() + ".command." + command.name().toLowerCase())));
-        tooltip.add(I18n.format(getUnlocalizedName() + ".lore2", (group.TEXT + I18n.format(getUnlocalizedName() + ".command.group." + group.name().toLowerCase()) + TextFormatting.WHITE)));
+        tooltip.add(I18n.format(getUnlocalizedName() + ".lore1", command.getDisplayString()));
+        tooltip.add(I18n.format(getUnlocalizedName() + ".lore2", group.getDisplayString()));
     }
 
     @Override

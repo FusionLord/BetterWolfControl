@@ -2,10 +2,11 @@ package net.fusionlord.mods.betterwolfcontrol.client.rendering.model.tile;
 
 import net.fusionlord.mods.betterwolfcontrol.common.tile.TileEntityDogBowl;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiIngame;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.init.Blocks;
@@ -19,22 +20,34 @@ public class TileEntitySpecialRenderDogBowl extends TileEntitySpecialRenderer<Ti
     @Override
     public void render(TileEntityDogBowl te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         super.render(te, x, y, z, partialTicks, destroyStage, alpha);
-        float h = te.getFoodDisplay();
+        float h = te.getFoodDisplay() * (p*2);
+        if (h == 0) return;
+        TextureAtlasSprite sprite = Minecraft.getMinecraft().getBlockRendererDispatcher().getModelForState(Blocks.SOUL_SAND.getDefaultState()).getParticleTexture();
+
+        bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
         GlStateManager.pushMatrix();
-        GlStateManager.translate(4 * p, p + Math.max(h, p * 2), 4 * p);
-        renderLevel();
+        GlStateManager.translate(x + .5f - 2f * p, y + p + h, z + .5f - 2f * p);
+        GlStateManager.disableLighting();
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+        bufferbuilder.pos(0f, 0f, 4f * p).tex(sprite.getMinU(), sprite.getMaxV()).endVertex();
+        bufferbuilder.pos(4f * p, 0f, 4f * p).tex(sprite.getMaxU(), sprite.getMaxV()).endVertex();
+        bufferbuilder.pos(4f * p, 0f, 0f).tex(sprite.getMaxU(), sprite.getMinV()).endVertex();
+        bufferbuilder.pos(0f, 0f, 0f).tex(sprite.getMinU(), sprite.getMinV()).endVertex();
+        tessellator.draw();
         GlStateManager.popMatrix();
     }
 
+    private float map(float h, int i, float v) {
+        if (h < i) return i;
+        if (h > v) return v;
+        return h;
+    }
+
     private void renderLevel() {
-        TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(Blocks.SOUL_SAND.getRegistryName().toString());
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder builder = tessellator.getBuffer();
-        builder.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
-        builder.pos(0, 0, 0).color(1, 1, 1, 1).tex(sprite.getMinU(), sprite.getMinV()).endVertex();
-        builder.pos(4 * p, 0, 0).color(1, 1, 1, 1).tex(sprite.getMaxU(), sprite.getMinV()).endVertex();
-        builder.pos(4 * p, 0, 4 * p).color(1, 1, 1, 1).tex(sprite.getMaxU(), sprite.getMaxV()).endVertex();
-        builder.pos(0, 0, 4 * p).color(1, 1, 1, 1).tex(sprite.getMinU(), sprite.getMaxV()).endVertex();
-        tessellator.draw();
+    }
+
+    public static void drawScaledCustomSizeModalRect(float x, float y, float u, float v, float uMax, float vMax, float width, float height) {
     }
 }

@@ -1,4 +1,4 @@
-package net.fusionlord.mods.betterwolfcontrol.client.rendering.entity;
+package net.fusionlord.mods.betterwolfcontrol.client.rendering.model.entity;
 
 import net.fusionlord.mods.betterwolfcontrol.common.capability.entity.ProviderWolfState;
 import net.fusionlord.mods.betterwolfcontrol.common.enums.WolfStates;

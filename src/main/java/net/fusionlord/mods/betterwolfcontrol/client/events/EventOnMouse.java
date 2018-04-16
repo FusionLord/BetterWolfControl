@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 /**
  * Created by FusionLord on 4/2/2018.
  */
-public class MouseEvent {
+public class EventOnMouse {
     @SubscribeEvent
     public void onMouse(net.minecraftforge.client.event.MouseEvent event) {
         if (event.isCanceled()) return;

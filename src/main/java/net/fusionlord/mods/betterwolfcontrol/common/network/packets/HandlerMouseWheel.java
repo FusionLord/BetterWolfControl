@@ -15,7 +15,7 @@ public class HandlerMouseWheel implements IMessageHandler<PacketMouseWheel, IMes
     public IMessage onMessage(PacketMouseWheel message, MessageContext ctx) {
         EntityPlayer player = ctx.getServerHandler().player;
         if (player.isSneaking() && player.getHeldItemMainhand().getItem() instanceof IMouseWheelListener)
-            ((IMouseWheelListener)player.getHeldItemMainhand().getItem()).onWheel(player.getHeldItemMainhand(), message.amount);
+            ((IMouseWheelListener)player.getHeldItemMainhand().getItem()).onWheel(player.getHeldItemMainhand(), message.amount, message.modifier);
         return null;
     }
 }

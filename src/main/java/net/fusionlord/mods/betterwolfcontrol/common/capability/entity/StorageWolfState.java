@@ -7,7 +7,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 
 import javax.annotation.Nullable;
-import java.util.concurrent.Callable;
 
 /**
  * Created by FusionLord on 4/6/2018.
@@ -26,23 +25,3 @@ public class StorageWolfState implements Capability.IStorage<IWolfState> {
     }
 }
 
-interface IWolfState {
-    WolfStates get();
-    WolfStates set(WolfStates newState);
-}
-
-class WolfState implements IWolfState {
-    private WolfStates state = WolfStates.AGGRESSIVE;
-
-    @Override
-    public WolfStates get() {
-        return state;
-    }
-
-    @Override
-    public WolfStates set(WolfStates newState) {
-        WolfStates oldState = state;
-        state = newState;
-        return oldState;
-    }
-}

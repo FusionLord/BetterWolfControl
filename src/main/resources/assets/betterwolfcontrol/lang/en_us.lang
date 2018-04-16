@@ -1,7 +1,7 @@
 # Key Localizations
 
 # Item Localizations
-item.betterwolfcontrol:whistle.display=Wolf Whistle (%s) (%s)
+item.betterwolfcontrol:whistle.display=Wolf Whistle
 
 # Block Localizations
 
@@ -38,3 +38,8 @@ item.betterwolfcontrol:whistle.command.group.brown=Brown
 item.betterwolfcontrol:whistle.command.group.green=Green
 item.betterwolfcontrol:whistle.command.group.red=Red
 item.betterwolfcontrol:whistle.command.group.black=Black
+
+# Wolf States
+string.wolfstate.aggressive=Aggressive
+string.wolfstate.passive=Passive
+string.wolfstate.defensive=Defensive

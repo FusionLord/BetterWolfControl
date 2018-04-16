@@ -1,5 +1,6 @@
-package net.fusionlord.mods.betterwolfcontrol.client.rendering.model.items;
+package net.fusionlord.mods.betterwolfcontrol.client.rendering.model.item;
 
+import net.fusionlord.mods.betterwolfcontrol.common.enums.Group;
 import net.fusionlord.mods.betterwolfcontrol.common.items.ItemWhistle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IItemColor;
@@ -16,7 +17,7 @@ public class ItemColorWhistle implements IItemColor {
     @Override
     public int colorMultiplier(ItemStack stack, int tintIndex) {
         if (stack.getItem() instanceof ItemWhistle && tintIndex == 0)
-            if (ItemWhistle.getGroup(stack) == ItemWhistle.Group.ALL)
+            if (ItemWhistle.getGroup(stack) == Group.ALL)
                 return Color.HSBtoRGB((float) Minecraft.getMinecraft().player.ticksExisted % interval / interval * speed, .5f, .5f);
             else
                 return ItemWhistle.getGroup(stack).DYE.getColorValue();

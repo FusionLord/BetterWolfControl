@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "betterwolfcontrol:items/whistle",
-    "layer1": "betterwolfcontrol:items/whistle_group"
-  }
-}

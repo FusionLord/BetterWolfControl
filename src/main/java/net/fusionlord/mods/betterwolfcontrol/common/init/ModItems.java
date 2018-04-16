@@ -1,7 +1,7 @@
 package net.fusionlord.mods.betterwolfcontrol.common.init;
 
 import net.fusionlord.mods.betterwolfcontrol.common.config.Reference;
-import net.fusionlord.mods.betterwolfcontrol.common.items.ItemWolfWhistle;
+import net.fusionlord.mods.betterwolfcontrol.common.items.ItemWhistle;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -16,7 +16,7 @@ import java.util.*;
 public class Items {
     public static final Set<Item> ITEMS = new HashSet<>();
 
-    public static final Item WOLF_WHISTLE = add(new ItemWolfWhistle());
+    public static final Item WOLF_WHISTLE = add(new ItemWhistle());
 
     private static Item add(Item item) {
         ITEMS.add(item);

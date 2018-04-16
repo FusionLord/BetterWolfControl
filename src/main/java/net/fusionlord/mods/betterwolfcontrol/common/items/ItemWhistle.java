@@ -71,7 +71,7 @@ public class ItemWolfWhistle extends Item implements IMouseWheelListener
         ALL(EnumDyeColor.WHITE, TextFormatting.WHITE),
         WHITE(EnumDyeColor.WHITE, TextFormatting.WHITE),
         ORANGE(EnumDyeColor.ORANGE, TextFormatting.GOLD),
-        MAGENTA(EnumDyeColor.MAGENTA, TextFormatting.AQUA),
+        MAGENTA(EnumDyeColor.MAGENTA, TextFormatting.LIGHT_PURPLE),
         LIGHT_BLUE(EnumDyeColor.LIGHT_BLUE, TextFormatting.BLUE),
         YELLOW(EnumDyeColor.YELLOW, TextFormatting.YELLOW),
         LIME(EnumDyeColor.LIME, TextFormatting.GREEN),
@@ -105,10 +105,14 @@ public class ItemWolfWhistle extends Item implements IMouseWheelListener
 
         maxStackSize = 1;
 
-        addPropertyOverride(new ResourceLocation("command"), (stack, world, entity) -> {
+        addPropertyOverride(Reference.getResource("command"), (stack, world, entity) -> {
             if (!stack.hasTagCompound()) createDefaultTag(stack);
-            float f = stack.getTagCompound().getInteger("command") / 100f;
-            System.out.println(f);
+            float f = (float)stack.getTagCompound().getInteger("command") / 100f;
+            return f;
+        });
+        addPropertyOverride(Reference.getResource("group"), (stack, world, entity) -> {
+            if (!stack.hasTagCompound()) createDefaultTag(stack);
+            float f = (float)stack.getTagCompound().getInteger("group") / 100f;
             return f;
         });
     }
@@ -182,7 +186,7 @@ public class ItemWolfWhistle extends Item implements IMouseWheelListener
         return EnumActionResult.SUCCESS;
     }
 
-    private void createDefaultTag(ItemStack stack) {
+    public void createDefaultTag(ItemStack stack) {
         NBTTagCompound tag = new NBTTagCompound();
         tag.setInteger("command", 0);
         tag.setInteger("group", 0);

@@ -18,7 +18,7 @@ public enum CreativeTabs {
         tab = new net.minecraft.creativetab.CreativeTabs(I18n.format("creativetab." + tabName, "")) {
             @Override
             public ItemStack getTabIconItem() {
-                return new ItemStack(Items.WOLF_WHISTLE);
+                return new ItemStack(ModItems.WOLF_WHISTLE);
             }
         };
     }

@@ -10,7 +10,7 @@ item.betterwolfcontrol:whistle.display=Wolf Whistle
 # Potion Localizations
 
 # Creative Tab Localizations
-itemGroup.creativetab.betterwolfcontrol=Better Wolf Control
+itemGroup.betterwolfcontrol:creativetab.main=Better Wolf Control
 
 # Config GUI Localizations
 

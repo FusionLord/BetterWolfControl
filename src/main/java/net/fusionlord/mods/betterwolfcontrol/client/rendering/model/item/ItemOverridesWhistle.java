@@ -38,8 +38,8 @@ public class ItemOverridesWhistle extends ItemOverrideList {
         }
 
         ImmutableMap.Builder<String, String> builder = ImmutableMap.builder();
-        builder.put("layer0", Reference.MODID + ":item/whistle/whistle");
-        builder.put("layer1", Reference.MODID + ":item/whistle/command/" + command.name().toLowerCase(Locale.ENGLISH));
+        builder.put("layer0", Reference.MODID + ":items/whistle/whistle");
+        builder.put("layer1", Reference.MODID + ":items/whistle/command/" + command.name().toLowerCase(Locale.ENGLISH));
         ItemLayerModel newModel = ItemLayerModel.INSTANCE.retexture(builder.build());
         cachedModel = newModel.bake(newModel.getDefaultState(), DefaultVertexFormats.ITEM, textureGetter);
         modelCache.put(command, cachedModel);

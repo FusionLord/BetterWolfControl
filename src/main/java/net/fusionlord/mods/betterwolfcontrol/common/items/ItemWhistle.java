@@ -4,6 +4,7 @@ import net.fusionlord.mods.betterwolfcontrol.common.config.Reference;
 import net.fusionlord.mods.betterwolfcontrol.common.enums.Command;
 import net.fusionlord.mods.betterwolfcontrol.common.enums.Group;
 import net.fusionlord.mods.betterwolfcontrol.common.init.ModCreativeTabs;
+import net.fusionlord.mods.betterwolfcontrol.common.init.ModItems;
 import net.fusionlord.mods.betterwolfcontrol.common.items.interfaces.IMouseWheelListener;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -32,7 +33,6 @@ public class ItemWhistle extends Item implements IMouseWheelListener {
         super();
         setRegistryName(Reference.getResource("whistle"));
         setUnlocalizedName(getRegistryName().toString());
-        setCreativeTab(ModCreativeTabs.MAIN.tab);
 
         bFull3D = true;
 

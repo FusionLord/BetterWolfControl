@@ -46,9 +46,9 @@ public class Items {
 
     @SubscribeEvent
     public static void stitchTextures(final TextureStitchEvent.Pre event) {
-        event.getMap().registerSprite(Reference.getResource("item/whistle/whistle"));
+        event.getMap().registerSprite(Reference.getResource("items/whistle/whistle"));
         for (Command command : Command.VALUES)
-            event.getMap().registerSprite(Reference.getResource("item/whistle/command/" + command.name().toLowerCase()));
+            event.getMap().registerSprite(Reference.getResource("items/whistle/command/" + command.name().toLowerCase()));
         System.out.println("TEXTURES REGISTERED!");
     }
 }

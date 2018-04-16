@@ -23,12 +23,12 @@ public class ModItems {
 
     private static<T extends Item> T add(T t) {
         ITEMS.add(t);
+        t.setCreativeTab(ModCreativeTabs.MAIN);
         return t;
     }
 
     @SubscribeEvent
     public static void registerItems(final RegistryEvent.Register<Item> event) {
         ITEMS.forEach(event.getRegistry()::register);
-        ModBlocks.BLOCKS.stream().filter(b -> b instanceof ICustomItemBlock).map(ICustomItemBlock.class::cast).collect(Collectors.toList()).forEach(i -> event.getRegistry().register(i.getItemBlock()));
     }
 }

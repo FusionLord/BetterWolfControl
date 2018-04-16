@@ -21,11 +21,15 @@ public class ModBlocks {
 
     private static <T extends Block> T add(T t) {
         BLOCKS.add(t);
+        t.setCreativeTab(ModCreativeTabs.MAIN);
         return t;
     }
 
     @SubscribeEvent
     public static void registerBlocks(final RegistryEvent.Register<Block> event) {
-        BLOCKS.forEach(event.getRegistry()::register);
+        System.out.println("NUMBER OF BLOCKS: " + BLOCKS.size());
+        BLOCKS.forEach((Block b) -> {
+            System.out.println(b.getRegistryName());
+            event.getRegistry().register(b);});
     }
 }

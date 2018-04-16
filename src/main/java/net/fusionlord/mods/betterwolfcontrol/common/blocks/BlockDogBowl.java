@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Explosion;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -52,18 +52,12 @@ public class BlockDogBowl extends Block {
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+        ((TileEntityDogBowl)worldIn.getTileEntity(pos)).setGroup(Group.VALUES[stack.getMetadata()]);
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta) {
-        if (meta < 0) meta = 0;
-        if (meta >= Group.VALUES.length) meta = Group.VALUES.length-1;
-        return getDefaultState().withProperty(GROUP, Group.VALUES[meta]);
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(GROUP).ordinal();
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return state.withProperty(GROUP, ((TileEntityDogBowl)worldIn.getTileEntity(pos)).getGroup());
     }
 
     @Override
@@ -72,5 +66,15 @@ public class BlockDogBowl extends Block {
         for(Group color : Group.VALUES) {
             items.add(new ItemStack(this, 1, color.ordinal()));
         }
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        return getDefaultState();
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return 0;
     }
 }

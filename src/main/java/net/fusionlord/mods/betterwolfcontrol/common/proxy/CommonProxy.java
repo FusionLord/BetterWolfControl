@@ -33,7 +33,6 @@ public class CommonProxy implements IProxy {
     @Override
     public void init(FMLInitializationEvent event) {
         CapabilityManager.INSTANCE.register(IWolfState.class, new StorageWolfState(), WolfState.class);
-        ModCreativeTabs.register();
     }
 
     @Override

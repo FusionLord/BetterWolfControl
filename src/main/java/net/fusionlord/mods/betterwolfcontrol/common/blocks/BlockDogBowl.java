@@ -1,5 +1,6 @@
 package net.fusionlord.mods.betterwolfcontrol.common.blocks;
 
+import com.google.common.collect.Lists;
 import net.fusionlord.mods.betterwolfcontrol.common.blocks.intefaces.ICustomItemBlock;
 import net.fusionlord.mods.betterwolfcontrol.common.config.Reference;
 import net.fusionlord.mods.betterwolfcontrol.common.enums.Group;
@@ -14,28 +15,33 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import org.lwjgl.Sys;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by FusionLord on 4/15/2018.
  */
-public class BlockDogBowl extends Block implements ICustomItemBlock {
-    public static final PropertyEnum<Group> GROUP = PropertyEnum.create("group", Group.class);
+public class BlockDogBowl extends Block {
+    private static final PropertyEnum<Group> GROUP = PropertyEnum.create("group", Group.class);
     private static final AxisAlignedBB box1 = new AxisAlignedBB(0.1875f, 0f, 0.1875f, 0.8125f, 0.0625f, 0.8125f);
     private static final AxisAlignedBB box2 = new AxisAlignedBB(0.25f, 0.0625f, 0.25f, 0.75f, 0.125f, 0.75f);
     private static final AxisAlignedBB box3 = new AxisAlignedBB(0.3125f, 0.125f, 0.3125f, 0.6875f, 0.1875f, 0.6875f);
@@ -46,7 +52,13 @@ public class BlockDogBowl extends Block implements ICustomItemBlock {
         this.setRegistryName(Reference.getResource("dogbowl"));
         this.setUnlocalizedName(getRegistryName().toString());
         this.setDefaultState(blockState.getBaseState().withProperty(GROUP, Group.ALL));
+        this.setHardness(0.25f);
         TileEntity.register(getRegistryName().toString().concat("_tileentity"), TileEntityDogBowl.class);
+    }
+
+    @Override
+    public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player) {
+        return true;
     }
 
     @Override
@@ -68,25 +80,48 @@ public class BlockDogBowl extends Block implements ICustomItemBlock {
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
-        ((TileEntityDogBowl)worldIn.getTileEntity(pos)).setGroup(Group.VALUES[stack.getMetadata()]);
+        TileEntity te = worldIn.getTileEntity(pos);
+        if (!(te instanceof TileEntityDogBowl)) return;
+        TileEntityDogBowl bowl = (TileEntityDogBowl) te;
+        bowl.setGroup(Group.VALUES[stack.getMetadata()]);
+        if (placer instanceof EntityPlayer)
+            bowl.setOwner(placer.getPersistentID());
+        if (stack.getTagCompound() != null) {
+            bowl.setFood(stack.getTagCompound().getFloat("food"));
+        }
     }
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         TileEntity te = worldIn.getTileEntity(pos);
-        if (te == null || !(te instanceof TileEntityDogBowl))
+        if (!(te instanceof TileEntityDogBowl))
             return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
         TileEntityDogBowl bowl = (TileEntityDogBowl)te;
-        if (TileEntityDogBowl.VALIDFOODS.containsKey(playerIn.getHeldItem(hand).getItem())) {
-            int used = bowl.addFood(playerIn.getHeldItemMainhand());
-            if (!playerIn.isCreative())
-                playerIn.getHeldItem(hand).shrink(used);
+        if (!bowl.canPlayerInteract(playerIn)) return true;
+        ItemStack stack = playerIn.getHeldItem(hand);
+        if (stack.getItem() == Items.DYE && state.getValue(GROUP) != Group.ALL) {
+            bowl.setGroup(Group.getFromDye(EnumDyeColor.byDyeDamage(stack.getMetadata())));
+            stack.shrink(1);
             return true;
-        } else if (playerIn.getHeldItem(hand) == ItemStack.EMPTY)
-        {
-            playerIn.sendStatusMessage(new TextComponentString("Food Level: " + (bowl.getFoodDisplay() * 100 + "% " + bowl.getFood() + "/" + bowl.getMaxFood())), true);
         }
+        if (TileEntityDogBowl.isValidFood(stack)) {
+            if (playerIn.capabilities.isCreativeMode) {
+                bowl.creativeFill();
+                return true;
+            }
+            stack.shrink(bowl.addFood(stack));
+            sendStatus(playerIn, bowl);
+            return true;
+        }
+        sendStatus(playerIn, bowl);
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+    }
+
+    private void sendStatus(EntityPlayer player, TileEntityDogBowl bowl) {
+        if (player.world.isRemote) return;
+        String message = String.format(I18n.translateToLocal(Reference.getResource("foodlevel").toString()), String.valueOf(bowl.getFoodDisplay() * 100).concat("%"), String.valueOf(bowl.getFood()), String.valueOf(bowl.getMaxFood()));
+        player.sendStatusMessage(new TextComponentTranslation(message), true);
+        TextComponentTranslation trans = new TextComponentTranslation("betterwolfcontrol:command.come.afsdf");
     }
 
     @Override
@@ -106,11 +141,6 @@ public class BlockDogBowl extends Block implements ICustomItemBlock {
     @Override
     public int getMetaFromState(IBlockState state) {
         return 0;
-    }
-
-    @Override
-    public ItemBlock getItemBlock() {
-        return new ItemBlockDogBowl(this);
     }
 
     @Override
@@ -139,8 +169,40 @@ public class BlockDogBowl extends Block implements ICustomItemBlock {
     }
 
     @Override
-    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        drops.add(new ItemStack(this, 1, getActualState(state,world,pos).getValue(GROUP).ordinal()));
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+        return willHarvest || super.removedByPlayer(state, world, pos, player, willHarvest);
+    }
+
+    @Override
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+        ItemStack stack = new ItemStack(this, 1, getActualState(state,world,pos).getValue(GROUP).ordinal());
+
+        TileEntity te = world.getTileEntity(pos);
+        if (te instanceof TileEntityDogBowl) {
+            TileEntityDogBowl bowl = (TileEntityDogBowl)te;
+            if (bowl.getFood() > 0) {
+                NBTTagCompound tag = new NBTTagCompound();
+                tag.setFloat("food", bowl.getFood());
+                stack.setTagCompound(tag);
+            }
+        }
+
+        List<ItemStack> drops = Lists.newArrayList();
+        drops.add(stack);
+        return drops;
+    }
+
+    @Override
+    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
+        super.harvestBlock(worldIn, player, pos, state, te, stack);
+        worldIn.setBlockToAir(pos);
+    }
+
+
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        return null;
     }
 
     @Override

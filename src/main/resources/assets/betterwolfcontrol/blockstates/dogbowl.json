@@ -5,26 +5,24 @@
   },
   "variants": {
     "group": {
-      "all": {},
-      "white": { "textures": { "0": "minecraft:blocks/concrete_white" } },
-      "orange": { "textures": { "0": "minecraft:blocks/concrete_orange" } },
-      "magenta": { "textures": { "0": "minecraft:blocks/concrete_magenta" } },
-      "light_blue": { "textures": { "0": "minecraft:blocks/concrete_light_blue" } },
-      "yellow": { "textures": { "0": "minecraft:blocks/concrete_yellow" } },
-      "lime": { "textures": { "0": "minecraft:blocks/concrete_lime" } },
-      "pink": { "textures": { "0": "minecraft:blocks/concrete_pink" } },
-      "gray": { "textures": { "0": "minecraft:blocks/concrete_gray" } },
-      "silver": { "textures": { "0": "minecraft:blocks/concrete_silver" } },
-      "cyan": { "textures": { "0": "minecraft:blocks/concrete_cyan" } },
-      "purple": { "textures": { "0": "minecraft:blocks/concrete_purple" } },
-      "blue": { "textures": { "0": "minecraft:blocks/concrete_blue" } },
-      "brown": { "textures": { "0": "minecraft:blocks/concrete_brown" } },
-      "green": { "textures": { "0": "minecraft:blocks/concrete_green" } },
-      "red": { "textures": { "0": "minecraft:blocks/concrete_red" } },
-      "black": { "textures": { "0": "minecraft:blocks/concrete_black" } }
+      "all":        { "transform": { "translation": [0, -0.0625, 0] } },
+      "white":      { "submodel": "minecraft:carpet_white" },
+      "orange":     { "submodel": "minecraft:carpet_orange" },
+      "magenta":    { "submodel": "minecraft:carpet_magenta" },
+      "light_blue": { "submodel": "minecraft:carpet_light_blue" },
+      "yellow":     { "submodel": "minecraft:carpet_yellow" },
+      "lime":       { "submodel": "minecraft:carpet_lime" },
+      "pink":       { "submodel": "minecraft:carpet_pink" },
+      "gray":       { "submodel": "minecraft:carpet_gray" },
+      "silver":     { "submodel": "minecraft:carpet_silver" },
+      "cyan":       { "submodel": "minecraft:carpet_cyan" },
+      "purple":     { "submodel": "minecraft:carpet_purple" },
+      "blue":       { "submodel": "minecraft:carpet_blue" },
+      "brown":      { "submodel": "minecraft:carpet_brown" },
+      "green":      { "submodel": "minecraft:carpet_green" },
+      "red":        { "submodel": "minecraft:carpet_red" },
+      "black":      { "submodel": "minecraft:carpet_black" }
     },
-    "inventory": [{
-
-    }]
+    "inventory": [{ }]
   }
 }

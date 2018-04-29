@@ -35,14 +35,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by FusionLord on 4/2/2018.
  */
-@SideOnly(Side.CLIENT)
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = Reference.MODID, value = {Side.CLIENT})
 public class ClientProxy extends CommonProxy {
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
         for (Group group : Group.VALUES) {
-            Item item = Item.getItemFromBlock(ModBlocks.DOG_BOWL);
-            ModelResourceLocation mrl = new ModelResourceLocation(Reference.getResource("dogbowl"), "group=".concat(group.getName()));
+            Item item = Item.getItemFromBlock(ModBlocks.DOGBOWL);
+            ModelResourceLocation mrl = new ModelResourceLocation(item.getRegistryName(), "group=".concat(group.getName()));
             ModelLoader.setCustomModelResourceLocation(item, group.ordinal(), mrl);
         }
     }
@@ -55,7 +54,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void init(FMLInitializationEvent event) {
         super.init(event);
-        Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ItemColorWhistle(), ModItems.WOLF_WHISTLE);
+        Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ItemColorWhistle(), ModItems.WHISTLE);
         MinecraftForge.EVENT_BUS.register(new EventOnMouse());
         Render<EntityWolf> wolfRender = Minecraft.getMinecraft().getRenderManager().getEntityClassRenderObject(EntityWolf.class);
         if (wolfRender instanceof RenderWolf)

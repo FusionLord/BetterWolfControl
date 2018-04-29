@@ -1,7 +1,6 @@
 package net.fusionlord.mods.betterwolfcontrol.common.enums;
 
 import net.fusionlord.mods.betterwolfcontrol.common.config.Reference;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.TextFormatting;
@@ -51,7 +50,14 @@ public enum Group implements IStringSerializable {
         return VALUES[metadata];
     }
 
-    public String getDisplayString() {
-        return I18n.format(Reference.getResource("group.").toString().concat(getName()));
+    public String getUnlocalizedString() {
+        return Reference.getResource("group.").toString().concat(getName());
+    }
+
+    public static Group getFromDye(EnumDyeColor enumDyeColor) {
+        for (Group group : Group.VALUES) {
+            if (group.DYE == enumDyeColor && group != ALL) return group;
+        }
+        return ALL;
     }
 }

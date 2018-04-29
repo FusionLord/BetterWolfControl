@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class BetterWolfControl {
 
     public static BetterWolfControl INSTANCE;
-    @SidedProxy(clientSide = Reference.CLIENTPROXY, serverSide = Reference.COMMONPROXY)
+    @SidedProxy(modId = Reference.MODID, clientSide = Reference.CLIENTPROXY, serverSide = Reference.SERVERPROXY)
     public static IProxy proxy;
     public NetworkHandler networkHandler;
 

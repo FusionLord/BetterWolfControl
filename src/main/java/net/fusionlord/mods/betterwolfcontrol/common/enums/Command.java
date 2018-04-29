@@ -2,7 +2,6 @@ package net.fusionlord.mods.betterwolfcontrol.common.enums;
 
 import net.fusionlord.mods.betterwolfcontrol.common.config.Reference;
 import net.fusionlord.mods.betterwolfcontrol.common.items.ItemWhistle;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
@@ -54,7 +53,7 @@ public enum Command {
         return name().toLowerCase(Locale.ENGLISH);
     }
 
-    public String getDisplayString() {
-        return I18n.format(Reference.getResource("command.").toString().concat(getName()));
+    public String getUnlocalizedString() {
+        return Reference.getResource("command.").toString().concat(getName());
     }
 }

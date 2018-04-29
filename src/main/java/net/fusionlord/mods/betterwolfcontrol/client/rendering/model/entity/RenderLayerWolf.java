@@ -31,7 +31,7 @@ public class RenderLayerWolf implements LayerRenderer<EntityWolf> {
             float f = -renderManager.playerViewY + f0;
             float f1 = renderManager.playerViewX - 180;
             boolean flag1 = renderManager.options.thirdPersonView == 2;
-            EntityRenderer.drawNameplate(minecraft.fontRenderer, I18n.format(wolfState.getUnlocalizedString()), 0f, 0f, 0f, -3, f, f1, flag1, false);
+            EntityRenderer.drawNameplate(minecraft.fontRenderer, I18n.format(wolfState.getUnlocalizedString()) + " : " + entityWolf.getHealth() + "/" + entityWolf.getMaxHealth(), 0f, 0f, 0f, -3, f, f1, flag1, false);
         }
     }
 

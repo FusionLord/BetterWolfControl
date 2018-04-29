@@ -20,6 +20,8 @@ import net.minecraftforge.client.model.ItemLayerModel;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Collections;
 import java.util.function.Function;
@@ -27,7 +29,8 @@ import java.util.function.Function;
 /**
  * Created by FusionLord on 4/2/2018.
  */
-@Mod.EventBusSubscriber(modid = Reference.MODID)
+
+@Mod.EventBusSubscriber(modid = Reference.MODID, value = {Side.CLIENT})
 public class Items {
     @SubscribeEvent
     public static void registerItemRenders(final ModelRegistryEvent event) {
@@ -49,6 +52,5 @@ public class Items {
         event.getMap().registerSprite(Reference.getResource("items/whistle/whistle"));
         for (Command command : Command.VALUES)
             event.getMap().registerSprite(Reference.getResource("items/whistle/command/" + command.name().toLowerCase()));
-        System.out.println("TEXTURES REGISTERED!");
     }
 }

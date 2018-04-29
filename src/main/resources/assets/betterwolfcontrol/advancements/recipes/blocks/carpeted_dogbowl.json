@@ -1,0 +1,46 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "betterwolfcontrol:blocks/dogbowl/dogbowl_white",
+      "betterwolfcontrol:blocks/dogbowl/dogbowl_orange",
+      "betterwolfcontrol:blocks/dogbowl/dogbowl_magenta",
+      "betterwolfcontrol:blocks/dogbowl/dogbowl_yellow",
+      "betterwolfcontrol:blocks/dogbowl/dogbowl_lime",
+      "betterwolfcontrol:blocks/dogbowl/dogbowl_pink",
+      "betterwolfcontrol:blocks/dogbowl/dogbowl_gray",
+      "betterwolfcontrol:blocks/dogbowl/dogbowl_silver",
+      "betterwolfcontrol:blocks/dogbowl/dogbowl_cyan",
+      "betterwolfcontrol:blocks/dogbowl/dogbowl_purple",
+      "betterwolfcontrol:blocks/dogbowl/dogbowl_blue",
+      "betterwolfcontrol:blocks/dogbowl/dogbowl_brown",
+      "betterwolfcontrol:blocks/dogbowl/dogbowl_green",
+      "betterwolfcontrol:blocks/dogbowl/dogbowl_red",
+      "betterwolfcontrol:blocks/dogbowl/dogbowl_black"
+    ]
+  },
+  "criteria": {
+    "has_carpet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:carpet"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "betterwolfcontrol:blocks/dogbowl/dogbowl_white"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_carpet",
+      "has_the_recipe"
+    ]
+  ]
+}

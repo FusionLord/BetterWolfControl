@@ -1,9 +1,8 @@
 package net.fusionlord.mods.betterwolfcontrol.common.items;
 
-import net.fusionlord.mods.betterwolfcontrol.common.config.Reference;
 import net.fusionlord.mods.betterwolfcontrol.common.enums.Group;
 import net.minecraft.block.Block;
-import net.minecraft.client.resources.I18n;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -16,20 +15,14 @@ public class ItemBlockDogBowl extends ItemBlock {
     public ItemBlockDogBowl(Block block) {
         super(block);
         setRegistryName(block.getRegistryName());
+        setUnlocalizedName(getRegistryName().toString());
         setHasSubtypes(true);
     }
 
     @Override
-    public String getUnlocalizedName() {
-        return "item.".concat(Reference.getResource("dogbowl").toString());
-    }
-
-    @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return I18n.format(getUnlocalizedName(), Group.getFromMetaData(stack.getMetadata()).getDisplayString());
+        return String.format(I18n.translateToLocal(getUnlocalizedName()), I18n.translateToLocal(Group.getFromMetaData(stack.getMetadata()).getUnlocalizedString()));
     }
-
-
 
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {

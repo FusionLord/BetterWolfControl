@@ -19,7 +19,7 @@ public class ModCreativeTabs {
     public static final CreativeTabs MAIN = new CreativeTabs(Reference.getResource("creativetab.main").toString()) {
         @Override
         public ItemStack getTabIconItem() {
-            return new ItemStack(ModItems.WOLF_WHISTLE);
+            return new ItemStack(ModItems.WHISTLE);
         }
     };
 }

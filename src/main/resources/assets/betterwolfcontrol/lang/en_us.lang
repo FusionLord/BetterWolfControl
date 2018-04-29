@@ -2,6 +2,7 @@
 
 # Item Localizations
 item.betterwolfcontrol:whistle.display=Wolf Whistle
+tile.betterwolfcontrol:dogbowl=%s Dogbowl
 
 # Block Localizations
 
@@ -14,12 +15,11 @@ itemGroup.betterwolfcontrol:creativetab.main=Better Wolf Control
 
 # Config GUI Localizations
 
-# Command Localizations
-item.betterwolfcontrol:dogbowl=%s Dogbowl
+# Lore Localizations
 item.betterwolfcontrol:whistle.lore1=Command: %s
 item.betterwolfcontrol:whistle.lore2=Group: %s
 
-# Wolf Group
+# Wolf Group Localizations
 betterwolfcontrol:group.all=All
 betterwolfcontrol:group.white=White
 betterwolfcontrol:group.orange=Orange
@@ -38,13 +38,16 @@ betterwolfcontrol:group.green=Green
 betterwolfcontrol:group.red=Red
 betterwolfcontrol:group.black=Black
 
-# Wolf States
+# Wolf States Localizations
 betterwolfcontrol:wolfstate.aggressive=Aggressive
 betterwolfcontrol:wolfstate.passive=Passive
 betterwolfcontrol:wolfstate.defensive=Defensive
 
-# Commands
+# Commands Localizations
 betterwolfcontrol:command.sit=Sit
 betterwolfcontrol:command.come=Come
 betterwolfcontrol:command.speak=Speak
 betterwolfcontrol:command.group=Group
+
+# MISC Localizations
+betterwolfcontrol:foodlevel=Food Level: %s\% %s/%s
